@@ -258,6 +258,7 @@ namespace JogoDaVelha
             this.btnclean.TabIndex = 2;
             this.btnclean.Text = "Limpar";
             this.btnclean.UseVisualStyleBackColor = false;
+            this.btnclean.Click += new System.EventHandler(this.btnclean_Click);
             // 
             // Form1
             // 

@@ -15,6 +15,27 @@ namespace JogoDaVelha
         int Xplayer = 0, Oplayer = 0, empatesPontos = 0, rodadas = 0;
         bool turno = true, jogo_final = false;
         string[] texto = new string[9];
+
+        private void btnclean_Click(object sender, EventArgs e)
+        {
+            btn.Text = "";
+            button1.Text = "";
+            button2.Text = "";
+            button3.Text = "";
+            button4.Text = "";
+            button5.Text = "";
+            button6.Text = "";
+            button7.Text = "";
+            button8.Text = "";
+
+            rodadas = 0;
+            jogo_final = false;
+            for (int i = 0; i < 9; i++)
+            {
+                texto[i] = "";
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -51,11 +72,15 @@ namespace JogoDaVelha
             jogo_final = true;
             if (PlayerQueGanhou == 1)
             {
+                Xplayer++;
+                Xpontos.Text = Convert.ToString(Xplayer);
                 MessageBox.Show("Jogador X ganhou!!");
                 turno = true;
             }
             else
             {
+                Oplayer++;
+                Opontos.Text = Convert.ToString(Oplayer);
                 turno = false;
                 MessageBox.Show("Jogador O ganhou!!");
             }
@@ -110,6 +135,7 @@ namespace JogoDaVelha
                     return;
                 }// diagonal esquerda para direita 
             }
+
             if (texto[2] == suporte)
             {
                 if (texto[2] == texto[4] && texto[2] == texto[6])
@@ -117,6 +143,15 @@ namespace JogoDaVelha
                     Vencedor(ChecagemPlayer);
                     return;
                 }// diagonal direita para esquerda 
+            }
+
+            if (rodadas == 9 && jogo_final == false)
+            {
+                empatesPontos++;
+                Empate.Text = Convert.ToString(empatesPontos);
+                MessageBox.Show("Empate!");
+                jogo_final = true;
+                return;
             }
 
         }
